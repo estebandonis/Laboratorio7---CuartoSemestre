@@ -32,12 +32,9 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repository = PokemonRepository()
-        val adapter = PokemonListAdapter(repository.pokemonList)
-        val pokemonList = repository.getPokemonList(adapter)
-
-        val id = args.id
-        val pokemon = pokemonList[id]
+        val id = args.id + 1
+        val name = args.name
+        val pokemon = Pokemon(id, name)
 
         val imageViewFront = view.findViewById<ImageView>(R.id.imageView2)
         val imageViewBack = view.findViewById<ImageView>(R.id.imageView3)

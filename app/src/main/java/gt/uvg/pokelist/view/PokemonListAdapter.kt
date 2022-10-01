@@ -46,7 +46,7 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>) : RecyclerView.
             })
 
         holder.binding.cardView.setOnClickListener(){
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(position)
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(position, pokemon.name)
             holder.binding.root.findNavController().navigate(action)
         }
     }
