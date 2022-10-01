@@ -31,9 +31,16 @@ class MainFragment: Fragment() {
         recyclerView = binding.recyclerView
         super.onViewCreated(view, savedInstanceState)
 
-        val pokemonList = PokemonRepository().getPokemonList()
+        val repository = PokemonRepository()
+
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = PokemonListAdapter(pokemonList)
+        val adapter = PokemonListAdapter(repository.pokemonList)
+        recyclerView.adapter = adapter
+
+        val pokemonList = repository.getPokemonList(adapter)
+
+        binding.progressBar.visibility = View.GONE
+        binding.recyclerView.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

@@ -11,6 +11,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import gt.uvg.pokelist.R
 import gt.uvg.pokelist.databinding.FragmentDetailBinding
+import gt.uvg.pokelist.model.Pokemon
 import gt.uvg.pokelist.repository.PokemonRepository
 import java.lang.Exception
 
@@ -31,8 +32,11 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id = args.pokemonId
-        val pokemonList = PokemonRepository().getPokemonList()
+        val repository = PokemonRepository()
+        val adapter = PokemonListAdapter(repository.pokemonList)
+        val pokemonList = repository.getPokemonList(adapter)
+
+        val id = args.id
         val pokemon = pokemonList[id]
 
         val imageViewFront = view.findViewById<ImageView>(R.id.imageView2)
